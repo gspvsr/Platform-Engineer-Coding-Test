@@ -1,10 +1,13 @@
 # PacerPro Platform Engineer Coding Test
 
 ## Assumptions
-- Application logs contain the API endpoint and response time.
+- Application logs contain the API endpoint and response time. 
 - Response time is measured in milliseconds.
 - For this exercise, Sumo Logic alerts are tested using simulated events rather than live production logs.
-- “Due to Sumo Logic’s cron-based alert scheduling, the minimum run frequency is 15 minutes. The alert checks the last 10-minute log window and triggers if more than 5 logs exceed 3 seconds response time.”
+- Logs are ingested into Sumo Logic in near real time as the application generates them.
+- The query continuously evaluates a rolling 10-minute window using timeslice 10m.
+- If more than 5 log events for the /api/data endpoint have a response_time_ms greater than 3000 ms within that window, the alert triggers immediately.
+- So the alert fires based on real log injection and real-time evaluation, not on a scheduled batch or cron execution.
 
 ## Architecture Overview
 - The solution implements a simple monitoring and auto-remediation workflow.
