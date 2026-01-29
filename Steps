@@ -1,0 +1,12 @@
+{
+  "endpoint": "/api/data",
+  "response_time_ms": 4500
+}
+
+
+curl -X POST \
+https://jm8t9q6t39.execute-api.us-east-1.amazonaws.com/sumo-alert \
+-H "Content-Type: application/json" \
+-d '{
+  "action": "restart"
+}'
